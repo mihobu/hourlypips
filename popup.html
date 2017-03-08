@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Hourly Pips Extension Popup</title>
+    <style>
+      body {
+        font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+        font-size: 10px;
+        width: 200px;
+      }
+      #title { color: #ff9999; font-weight: bold; }
+      #author { color: #999999; font-size: 9px; margin-bottom: 5px; }
+      #versinfo { color: #999999; font-size: 9px; margin-bottom: 3px; margin-left: 10px; text-indent: -10px; }
+      #toneFreqSlider { width: 200px; }
+    </style>
+  </head>
+  <body>
+    <div id="title">Hourly Pips v1.2</div>
+    <div id="author">by Michael Burkhardt</div>
+    <div id="configContainer">
+      <input id="toneFreqSlider" type="range" min="200" max="2000" step="10" value="0" />
+      <div id="toneFreqDisplay">xxx</div>
+      <div id="testButtonDiv"><input id="testButton" type="button" name="tester" value="Play Pips Now" />
+    </div>
+    <script type="text/javascript" src="popup.js"></script>
+  </body>
+</html>
+
