@@ -6,6 +6,7 @@ http://creativecommons.org/licenses/by/4.0/ or send a letter to
 Creative Commons, PO Box 1866, Mountain View, CA 94042, USA.
 ==============================================================================
 VERSION HISTORY
+1.3 - Added slider bar for volume adjustment; added ability to save settings
 1.2 - Added slider bar to adjust tone frequency
 1.1 - Now using the (https://www.w3.org/TR/webaudio/) Web Audio API rather
       than playing an MP3 file. Still no settings.
