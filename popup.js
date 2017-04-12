@@ -1,30 +1,77 @@
-// GET BACKGROUND PAGE
-var bgp = chrome.extension.getBackgroundPage();
+// ==================================================================
+// GLOBALS AND SUCH
+// ==================================================================
 
+var bgp = chrome.extension.getBackgroundPage(); // get background page
+
+// ==================================================================
+// DEFINE FUNCTIONS
+// ==================================================================
+
+// ----------------------------------------------
 // update internal configuration
-function updateToneFreq() {
+// ----------------------------------------------
+function updateOptions() {
   var newtonefreq = document.getElementById("toneFreqSlider").value;
-  console.log("New tone frequency is " + newtonefreq + " Hz.");
+  var newvolume = document.getElementById("volumeSlider").value;
   bgp.tonefreq = newtonefreq;
-  updateToneFreqDisplay();
+  bgp.volume = newvolume;
+  bgp.gainNode.gain.value = bgp.volume/100.0;
+
+  save_options();
+  updateOptionsDisplay();
   bgp.play_pip();
 }
 
-// Allows a user to play the pips with current settings
+// ----------------------------------------------
+// Play the pips now with current settings
+// ----------------------------------------------
 function processTestClick() {
   console.log("running processTestClick() function");
   bgp.play_now();
 }
 
+// ----------------------------------------------
 // Update the displayed information
-function updateToneFreqDisplay() {
+// ----------------------------------------------
+function updateOptionsDisplay() {
   document.getElementById("toneFreqSlider").value = bgp.tonefreq;
   document.getElementById("toneFreqDisplay").innerHTML = "Tone frequency: " + bgp.tonefreq + " Hertz";
+  document.getElementById("volumeSlider").value = bgp.volume;
+  document.getElementById("volumeDisplay").innerHTML = "Volume: " + bgp.volume + "%";
 }
 
-// Do an initial update of the display to current values.
-updateToneFreqDisplay();
+// ----------------------------------------------
+// Save options to chrome.storage
+// ----------------------------------------------
+function save_options() {
+  console.log("save_options() called");
+  chrome.storage.sync.set({
+    'tonefreq': bgp.tonefreq,
+    'volume'  : bgp.volume
+  }, function() {
+    // Update status to let user know options were saved.
+    var status = document.getElementById('status');
+    status.textContent = 'Options saved.';
+    setTimeout(function() {
+      status.textContent = '';
+    }, 750);
+  });
+}
 
+// ==================================================================
+// RUN ONCE
+// ==================================================================
+
+// ----------------------------------------------
+// Do an initial update of the display to current values.
+// ----------------------------------------------
+updateOptionsDisplay();
+
+// ----------------------------------------------
 // ADD EVENT LISTENERS
+// ----------------------------------------------
 document.getElementById("testButton").addEventListener("click", processTestClick);
-document.getElementById("toneFreqSlider").addEventListener("change", updateToneFreq);
+document.getElementById("toneFreqSlider").addEventListener("change", updateOptions);
+document.getElementById("volumeSlider").addEventListener("change", updateOptions);
+

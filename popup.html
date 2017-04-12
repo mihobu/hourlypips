@@ -12,16 +12,27 @@
       #author { color: #999999; font-size: 9px; margin-bottom: 5px; }
       #versinfo { color: #999999; font-size: 9px; margin-bottom: 3px; margin-left: 10px; text-indent: -10px; }
       #toneFreqSlider { width: 200px; }
+      #volumeSlider { width: 200px; }
     </style>
   </head>
   <body>
-    <div id="title">Hourly Pips v1.2</div>
+    <div id="title">Hourly Pips v1.3</div>
     <div id="author">by Michael Burkhardt</div>
     <div id="configContainer">
-      <input id="toneFreqSlider" type="range" min="200" max="2000" step="10" value="0" />
+
+      <!-- tone frequency slider -->
+      <input id="toneFreqSlider" type="range" min="200" max="2000" step="25" value="850" />
       <div id="toneFreqDisplay">xxx</div>
+
+      <!-- volume slider -->
+      <input id="volumeSlider" type="range" min="0" max="100" step="10" value="50" />
+      <div id="volumeDisplay">xxx</div>
+
+      <!-- test button -->
       <div id="testButtonDiv"><input id="testButton" type="button" name="tester" value="Play Pips Now" />
+
     </div>
+    <div id="status"></div>
     <script type="text/javascript" src="popup.js"></script>
   </body>
 </html>
